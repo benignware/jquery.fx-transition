@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jquery-fx-transition | Animate example</title>
+    <!-- example dependencies -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/blocks.css">
+    
+    <script src="../dist/jquery.fx-transition.js"></script>
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>jquery.fx-transition <small>Animate</small></h1>
+      </div>
+    
+      <div class="example example-animate-1">
+        <h3>Example 1</h3>
+        <p><em>Click the button to animate the div with a number of different properties.</em></p>
+        <div class="form-group">
+          <button class="go btn btn-default">Run</button>
+        </div>
+        <div id="block" class="block">Hello!</div>
+        <script>
+          // Using multiple unit types within one animation.
+          $( ".example-animate-1 .go" ).click(function() {
+            $( ".example-animate-1 .block" ).animate({
+              width: "70%",
+              opacity: 0.4,
+              marginLeft: "0.6in",
+              fontSize: "2em",
+              lineHeight: "43px",
+              borderWidth: "10px"
+            }, {
+              duration: 1500, 
+              cssTransitions: true
+            } ).promise().done(function() {
+              console.warn("PROMISE");
+            });
+          });
+        </script>
+      </div>
+    
+      <div class="example example-animate-2">
+        <h3>Example 2</h3>
+        <p><em>Animates a div's left property with a relative value. Click several times on the buttons to see the relative animations queued up</em></p>
+        <div>
+          <div class="form-group btn-group">
+            <button id="left" class="btn btn-default">&laquo;</button>
+            <button id="right" class="btn btn-default">&raquo;</button>
+          </div>
+          <div class="block">Block</div>
+          <script>
+            $( "#right" ).click(function() {
+              $( ".example-animate-2 .block" ).animate({ "left": "+=50px" }, 1000 ).promise().done(function() {
+                // done
+              });
+            });
+            $( "#left" ).click(function(){
+              $( ".example-animate-2 .block" ).animate({ "left": "-=50px" }, 1000 ).promise().done(function() {
+                // done
+              });
+            });
+          </script>
+        </div>
+      </div>
+      
+      
+      <div class="example example-animate-3">
+        <h3>Example 3</h3>
+        <p><em>The first button shows how an unqueued animation works. It expands the div out to 90% width while the font-size is increasing. Once the font-size change is complete, the border animation will begin. The second button starts a traditional chained animation, where each animation will start once the previous animation on the element has completed.</em></p>
+        <div>
+          <div class="form-group btn-group">
+            <button id="go1" class="btn btn-default">Animate Block1</button>
+            <button id="go2" class="btn btn-default">Animate Block2</button>
+            <button id="go3" class="btn btn-default">Animate Both</button>
+            <button id="go4" class="btn btn-default">Reset</button>
+          </div>
+          
+          
+          <div id="block1" class="block">Block1</div>
+          <div id="block2" class="block">Block2</div>
+          
+          <script>
+            $( "#go1" ).click(function() {
+              
+              $( "#block1" )
+                .animate({
+                  width: "90%"
+                }, {
+                  queue: false,
+                  duration: 3000, 
+                  cssTransitions: true
+                })
+                .animate({ fontSize: "24px" }, {duration: 1500, cssTransitions: true} )
+                .animate({ borderRightWidth: "15px" }, {duration: 1500, cssTransitions: true} );
+            });
+            
+            $( "#go2" ).click(function() {
+              $( "#block2" )
+                .animate({ width: "90%" }, {duration: 1000, cssTransitions: true} )
+                .animate({ fontSize: "24px" }, {duration: 1000, cssTransitions: true} )
+                .animate({ borderLeftWidth: "15px" }, {duration: 1000, cssTransitions: true} );
+            });
+                
+            $( "#go3" ).click(function() {
+              $( "#go1" )
+                .add( "#go2" ).click();
+            });
+            
+            $( "#go4" ).click(function() {
+              // using css as in jquery's example will only work if transition has completed 
+              $( "div" )
+                .css({
+                  width: "",
+                  fontSize: "",
+                  borderWidth: ""
+                });
+            });
+            
+          </script>
+        </div>
+      </div>
+      
+      <div class="example example-animate-4">
+        <h3>Example 4</h3>
+        <p><em>Animates the first div's left property and synchronizes the remaining divs, using the step function to set their left properties at each stage of the animation. </em></p>
+          <div class="blocks">
+          <p><button class="go btn btn-default">Run »</button></p>
+          <div class="block">1</div>
+          <div class="block">2</div>
+          <div class="block">3</div>
+          <div class="block">4</div>
+          <div class="block">5</div>
+        </div>
+        <script>
+          $( ".example-animate-4 .go" ).click(function() {
+            $( ".example-animate-4 .block:first" ).animate({
+              left: 100
+            }, {
+              cssTransitions: true, 
+              duration: 1000, 
+              start: function() {
+              }, 
+              step: function( now, fx ) {
+                $( ".example-animate-4 .block:gt(0)" ).css( "left", now );
+              }, 
+              complete: function() {
+                // done
+              }
+            });
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

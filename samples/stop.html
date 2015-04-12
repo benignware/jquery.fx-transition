@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jquery.fx-transition | Stop</title>
+    <!-- example dependencies -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/blocks.css">
+    
+    <script src="../dist/jquery.fx-transition.js"></script>
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>jquery.fx-transition <small>Stop</small></h1>
+      </div>
+      
+      <div class="example example-1">
+        <h2>Example</h2>
+        <p><em>This example demonstrates how to stop an animation</em></p>
+        <form class="form-inline form-group">
+          <button id="go" class="go btn btn-default" type="button">Run</button>
+          <button id="stop" class="stop btn btn-default" type="button">STOP!</button>
+          <button id="back" class="back btn btn-default" type="button">Back</button>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="css_transitions" value="value" checked> cssTransitions
+            </label>
+          </div>
+        </form>
+        
+        <div class="block"></div>
+        
+        <script>
+          // Start animation
+          $( "#go" ).click(function() {
+            $( ".block" ).animate({ left: "+=100px" }, { 
+              duration: 2000, 
+              cssTransitions: $(".example-1 input[type='checkbox'][name='css_transitions']:checked").length > 0, 
+              queue: false 
+            } );
+          });
+          // Stop animation when button is clicked
+          $( "#stop" ).click(function() {
+            $( ".block" ).stop();
+          });
+          // Start animation in the opposite direction
+          $( "#back" ).click(function() {
+            $( ".block" ).animate({ left: "-=100px" }, { 
+              duration: 2000, 
+              cssTransitions: $(".example-1 input[type='checkbox'][name='css_transitions']:checked").length > 0, 
+              queue: false 
+            });
+          });
+        </script>
+      </div>
+      
+      
+    </div>
+  </body>
+</html>

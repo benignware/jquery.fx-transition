@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>jquery.fx-transition | FadeIn</title>
+    <!-- example dependencies -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/blocks.css">
+    
+    <script src="../dist/jquery.fx-transition.js"></script>
+    
+  </head>
+  <body>
+    
+    <div class="container">
+      <div class="page-header">
+        <h1>jquery.fx-transition <small>Fadein</small></h1>
+      </div>
+      
+      <div class="example example-fadein-1">
+        <h3>Example 1</h3>
+        
+        <div class="form-group">
+          <button class="go btn btn-default">Click here...</button>
+        </div>
+      
+        <div class="blocks">
+          <div id="one" class="block">1</div>
+          <div id="two" class="block">2</div>
+          <div id="three" class="block">3</div>
+        </div>
+        
+        <style>
+          .example-fadein-1 .block {
+            display: none;
+            float: left;
+          }
+        </style>
+        <script>
+          $( ".example-fadein-1 button.go" ).click(function() {
+            $( ".example-fadein-1 .block:hidden:first" ).fadeIn( "slow" );
+          });
+        </script>
+      
+      </div>
+      <h3>Example 2</h3>
+      <div class="example-censored">
+        <p class="text">
+          Let it be known that the party of the first part
+          and the party of the second part are henceforth
+          and hereto directed to assess the allegations
+          for factual correctness... (<a href="#">click!</a>)
+        </p>
+        <div class="box"><span>CENSORED!</span></div>
+      </div>
+      
+
+      <style>
+      
+        .example-censored {
+          position: relative;
+        }
+        
+        .example-censored p {
+          position: relative;
+          width: 400px;
+          height: 90px;
+        }
+        
+        .example-censored .box {
+          position: absolute;
+          width: 400px;
+          height: 65px;
+          font-size: 36px;
+          text-align: center;
+          color: yellow;
+          background: red;
+          padding-top: 8px;
+          top: 0;
+          left: 0;
+          display: none;
+        }
+        
+        .example-censored .box span {
+          display: none;
+        }
+      
+      </style>
+      
+      <script>
+        $( ".example-censored p a" ).click(function() {
+          $( ".example-censored .box" ).fadeIn( 3000, function() {
+            $( ".example-censored .box span" ).fadeIn( 100 );
+          });
+          return false;
+        });
+      </script>
+      
+      
+    </div>
+  </body>
+</html>

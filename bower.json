@@ -1,0 +1,21 @@
+{
+  "name": "jquery.fx-transition",
+  "version": "0.0.1",
+  "homepage": "https://github.com/benignware/jquery.fx-transition",
+  "authors": [
+    "Rafael Nowrotek <mail@benignware.com>"
+  ],
+  "description": "Drop-in css-transitions for jQuery",
+  "main": "dist/jquery.fx-transition.min.js",
+  "keywords": [
+    "jquery-extension"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
