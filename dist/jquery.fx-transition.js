@@ -1,6 +1,6 @@
 /*!
  * jquery.fx-transition - v0.0.1 - 
- * build: 2015-04-11
+ * build: 2015-04-12
  */
 
 /*!
