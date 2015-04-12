@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'tmp/<%= pkg.name %>.min.js': [ 'src/<%= pkg.name %>.js']
+          'dist/<%= pkg.name %>.min.js': [ 'dist/<%= pkg.name %>.js']
         }
       }
     }, 
@@ -56,6 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('default', ['clean:dist', 'jshint', 'concat', 'uglify', 'copy', 'clean:tmp']);
+  grunt.registerTask('default', ['jshint', 'copy', 'uglify', ]);
   
 };
