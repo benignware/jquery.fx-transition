@@ -509,8 +509,9 @@
       function stopTween( gotoEnd ) {
         if (!tween.stopped) {
           tween.stopped = true;
-          var value = $elem.css(getVendorStyle(tween.prop, true));
-          var css = getTransitionStyles(elem, null, [getVendorStyle(tween.prop, true)]);
+          var
+            value = $elem.css(getVendorStyle(tween.prop, true)),
+            css = getTransitionStyles(elem, null, [getVendorStyle(tween.prop, true)]);
           css[getVendorStyle(tween.prop)] = gotoEnd ? tween.end + tween.unit : value;
           $elem.css(css);
         }
