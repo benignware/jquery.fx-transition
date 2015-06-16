@@ -498,6 +498,7 @@
         if (tween && !tween.finished) {
           stopTween( true );
           tween.finished = true;
+          tween.stopped = true;
           tweenFinished.call(anim, tween);
           if (anim.finished) {
             $elem.off(transitionEvents.join(" "), transitionRunner);
@@ -506,9 +507,14 @@
       }
       // stop tween helper
       function stopTween( gotoEnd ) {
-        var css = getTransitionStyles(elem, null, [getVendorStyle(tween.prop, true)]);
-        css[getVendorStyle(tween.prop)] = gotoEnd ? tween.end + tween.unit : tween.cur() + tween.unit;
-        $elem.css(css);
+        if (!tween.stopped) {
+          tween.stopped = true;
+          var value = $elem.css(getVendorStyle(tween.prop, true));
+          var css = getTransitionStyles(elem, null, [getVendorStyle(tween.prop, true)]);
+          css[getVendorStyle(tween.prop)] = gotoEnd ? tween.end + tween.unit : value;
+          $elem.css(css);
+        }
+        
       }
       // step helper
       function step() {
